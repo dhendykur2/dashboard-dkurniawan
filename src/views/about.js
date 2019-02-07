@@ -5,7 +5,7 @@ class About extends Component {
   render() {
     return (
       <div className="container">
-        <p>GAY ITU HOMO</p>
+        <p>I'am good at designing front-end :D</p>
       </div>
     );
   }
