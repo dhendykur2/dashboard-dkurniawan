@@ -3,6 +3,9 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
+const errorColor = {
+    color: 'red',
+};
 class Login extends Component {
 
     constructor(props) {
@@ -13,11 +16,17 @@ class Login extends Component {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            error: false,
+        }
+    }
+    componentWillMount() {
+        const isAuthenticate = Cookies.get('UID')
+        if(isAuthenticate) {
+            this.props.history.push('/');
         }
     }
     onChangeEmail(e) {
-        console.log(e.target.value)
         this.setState({
             email: e.target.value
         });
@@ -33,29 +42,41 @@ class Login extends Component {
             email: this.state.email,
             password: this.state.password
         };
-        console.log(user)
+        if(!user) {
+            this.setState({
+                error: true
+            });
+        }
         axios.post('http://localhost:5000/signin', user)
         .then(res => {
-            console.log(Cookies.get('session'));
-            if (res.data) {
+            if (res.data.login) {
+                Cookies.set('UID',res.data.token);
                 this.props.history.push('/')
             }
+            this.setState({
+                error: true
+            });
         });
         
         this.setState({
             email: '',
-            password: ''
+            password: '',
+            error: false
         });
     }
 
     render () {
+        
         return (
             <div className="container">
                 <h2>Login</h2>
                 <form onSubmit={this.onSubmit} className="form-signin">
                     <div className="form-group col-md-4">
+                    { this.state.error ? (<label style={errorColor}>Wrong Email/Password</label>) : '' }
+                    </div>
+                    <div className="form-group col-md-4">
                     <label>Email</label>
-                    <input type="text" name="email" className="form-control" required onChange={this.onChangeEmail} />
+                    <input type="email" name="email" className="form-control" required onChange={this.onChangeEmail} />
                     </div> 
                     <div className="form-group col-md-4">
                     <label>Password</label>
@@ -63,6 +84,8 @@ class Login extends Component {
                     </div>
                     <div className="form-group col-md-4">
                         <input type="submit" className="btn-primary" value="Login"/>
+                        <br/>
+                        <br/>
                         <button className="btn-warning"><Link to={'/register'}>Register</Link></button>
                     </div>
                 </form>
