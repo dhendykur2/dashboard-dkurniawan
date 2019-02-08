@@ -35,6 +35,8 @@ class Post extends Component {
       const title = this.state.post.title;
       const description = this.state.post.description;
       const postedAt = this.state.post.createdAt;
+      const tag = this.state.post.Tags;
+      console.log(tag);
       console.log(this.state.post.User);
       //const name = this.state.post.User;
       return (
@@ -45,6 +47,10 @@ class Post extends Component {
           <p className="lead">{convertDate(postedAt)}</p>
 
           <p className="lead">{description}</p>
+            {
+              tag && tag.map(obj => 
+                <Link to={`/tag/${obj.name}`} style={{marginRight: "4px"}} className="nav-item">{obj.name}</Link>)
+            }
         </div>
       );
     }

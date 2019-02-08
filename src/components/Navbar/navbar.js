@@ -17,17 +17,12 @@ class Navbar extends Component {
     onLogout() {
         Cookies.remove('UID');
     }
-    resetState() {
-        this.setState({
-            tag: ''
-        })
-    }
     render() {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <ul className="navbar-nav mr-auto">
               <li>
-                <Link to={'/'} onClick={this.resetState} className="nav-link">Home</Link>
+                <Link to={'/'} className="nav-link">Home</Link>
               </li>
               <li>
                 <Link to={'/about'} className="nav-link">About</Link>
