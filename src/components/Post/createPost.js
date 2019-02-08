@@ -48,17 +48,19 @@ class CreatePost extends Component {
         Axios.post('http://localhost:5000/post', post)
         .then((res) => {
             console.log(res.data);
-            console.log('test');
             this.props.history.push('/');
+        })
+        .then(() => {
+            this.setState({
+                title: '',
+                description: '',
+                tag: ''
+            });
         })
         .catch(error => {
             console.log(error);
         });
-        this.setState({
-            title: '',
-            description: '',
-            tag: ''
-        })
+        
     }
 
     render() {

@@ -52,17 +52,17 @@ class Home extends Component {
     if(this.state.posts !== null) {
       return this.state.posts.map((object, i) => {
         return (
-          <div className="col-lg-8" key={object.id}>
-            <Link to={`/post/${object.id}`}>
-            <h1 className="mt-4">{object.title}</h1>
-            </Link>
-            <p className="lead">posted: {convertDate(object.createdAt)}</p>
-            <p className="lead">Posted By: {object.User.name}</p>
-              {
-                object.Tags.map(obj=> 
+          <div className="card" style={{width: "50rem"}}>
+          <div className="card-body">
+            <h5 className="card-title">{object.title}</h5>
+            <h6 className="card-subtitle mb-2 text-muted">{convertDate(object.createdAt)}</h6>
+            <p className="card-text">{object.description}</p>
+            <a href="#" className="card-link">{
+              object.Tags && object.Tags.map(obj => 
                 <Link to={`/tag/${obj.name}`} style={{marginRight: "4px"}} className="nav-item">{obj.name}</Link>)
-              }
+            }</a>
           </div>
+        </div>
         )
       })
     }

@@ -40,17 +40,16 @@ class Post extends Component {
       console.log(this.state.post.User);
       //const name = this.state.post.User;
       return (
-        <div className="col-lg-8">
-          
-          <h2>{title}</h2>
-          <h3>{}</h3>
-          <p className="lead">{convertDate(postedAt)}</p>
-
-          <p className="lead">{description}</p>
-            {
+        <div className="card" style={{width: "50rem"}}>
+          <div className="card-body">
+            <h5 className="card-title">{title}</h5>
+            <h6 className="card-subtitle mb-2 text-muted">{convertDate(postedAt)}</h6>
+            <p className="card-text">{description}</p>
+            <a href="#" className="card-link">{
               tag && tag.map(obj => 
                 <Link to={`/tag/${obj.name}`} style={{marginRight: "4px"}} className="nav-item">{obj.name}</Link>)
-            }
+            }</a>
+          </div>
         </div>
       );
     }
@@ -58,6 +57,7 @@ class Post extends Component {
   render() {
       return (
         <div className="container">
+        
           <h1>
             <Link to="/">BACK</Link>
           </h1>

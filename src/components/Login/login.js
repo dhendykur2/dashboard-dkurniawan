@@ -56,7 +56,7 @@ class Login extends Component {
             this.setState({
                 error: true
             });
-        });
+        })
         
         this.setState({
             email: '',
