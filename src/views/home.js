@@ -31,20 +31,6 @@ class Home extends Component {
       .catch((error) => {
         console.log(error);
       });
-    // if (this.state.tag === '') {
-      
-    // } else {
-    //   Axios.get(`http://localhost:5000/post/tag/${this.state.tag}`, {
-    //     responseType: 'json'
-    //   })
-    //   .then(response => {
-    //     console.log(response.data)
-    //     this.setState({ posts: response.data });
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-    // }
   }
 
   postTable(){
@@ -54,7 +40,7 @@ class Home extends Component {
         return (
           <div className="card" style={{width: "50rem"}}>
           <div className="card-body">
-            <h5 className="card-title">{object.title}</h5>
+            <h5 className="card-title"><Link to ={`/post/${object.id}`}>{object.title}</Link></h5>
             <h6 className="card-subtitle mb-2 text-muted">{convertDate(object.createdAt)}</h6>
             <p className="card-text">{object.description}</p>
             <a href="#" className="card-link">{

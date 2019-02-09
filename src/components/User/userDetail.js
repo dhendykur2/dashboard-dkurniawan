@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import {Link} from 'react-router-dom';
 
 class UserDetail extends Component {
     
@@ -24,11 +25,10 @@ class UserDetail extends Component {
         const email = this.state.users.email;
         return (
             <div className="col-lg-8">
-          
-          <p className="lead">{name}</p>
-
-          <p className="lead">{email}</p>
-        </div>
+                <p className="lead">Name: {name}</p>
+                <p className="lead">Email: {email}</p>
+                <Link to={`/change-password/${this.state.id}`}>change password</Link>
+            </div>
         );
     }
 

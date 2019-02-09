@@ -18,6 +18,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import store from '../src/redux/store';
 import UserDetail from './components/User/userDetail';
+import UpdateUser from './components/User/updateUser';
 
 
 class App extends Component {
@@ -35,6 +36,8 @@ class App extends Component {
               <Route exact path="/register" component={register}/>
               <Route exact path="/post/:id" component={post}/>
               <Route exact path="/create-post" component={createPost}/>
+
+              <Route exact path="/change-password/:id" component={UpdateUser}/>
               <Route exact path="/user/:id" component={UserDetail}/>
             </Switch>
           </div>

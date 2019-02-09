@@ -42,13 +42,13 @@ class Post extends Component {
       return (
         <div className="card" style={{width: "50rem"}}>
           <div className="card-body">
-            <h5 className="card-title">{title}</h5>
+            <h1 className="card-title">{title}</h1>
             <h6 className="card-subtitle mb-2 text-muted">{convertDate(postedAt)}</h6>
             <p className="card-text">{description}</p>
-            <a href="#" className="card-link">{
+            {
               tag && tag.map(obj => 
                 <Link to={`/tag/${obj.name}`} style={{marginRight: "4px"}} className="nav-item">{obj.name}</Link>)
-            }</a>
+            }
           </div>
         </div>
       );

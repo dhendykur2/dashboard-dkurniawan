@@ -7,6 +7,14 @@ import Axios from 'axios';
 class Navbar extends Component {
     constructor(props) {
         super(props);
+        
+        //console.log(decode);
+        this.state = {
+            id: '',
+            name: ''
+        }
+    }
+    componentWillMount() {
         const isAuthenticated = Cookies.get('UID');
         let decode = '';
         let currentId = '';
@@ -15,11 +23,10 @@ class Navbar extends Component {
             decode = jwt_decode(Cookies.get('UID'));
             currentId = decode.user.id;
         }
-        console.log(decode);
-        this.state = {
+        this.setState({
             id: currentId || '',
             name: isAuthenticated ? decode.user.name : ''
-        }
+        })
     }
     onLogout() {
         Cookies.remove('UID');
