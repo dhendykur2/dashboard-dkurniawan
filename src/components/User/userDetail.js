@@ -25,6 +25,7 @@ class UserDetail extends Component {
         const email = this.state.users.email;
         return (
             <div className="col-lg-8">
+                <h2><Link to={`/user-post/${this.state.id}`}>My Post</Link></h2>
                 <p className="lead">Name: {name}</p>
                 <p className="lead">Email: {email}</p>
                 <Link to={`/change-password/${this.state.id}`}>change password</Link>

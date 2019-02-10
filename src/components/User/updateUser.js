@@ -69,7 +69,7 @@ class UpdateUser extends Component {
             });
         })
         .catch(error => {
-            console.log(error);
+            //console.log(error);
         }); 
 
     }
@@ -91,7 +91,7 @@ class UpdateUser extends Component {
                     </div> 
                     <div className="form-group col-md-4">
                         <label>Confirm New Password</label>
-                        <input type="password" className="form-control" name="password" required onChange={this.onChangeConfirm}/>
+                        <input type="password" className="form-control" name="s" required onChange={this.onChangeConfirm}/>
                     </div>
                     <div className="form-group col-md-4">
                         <input type="submit" className="btn-primary" value="Change Password"/>

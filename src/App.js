@@ -19,7 +19,8 @@ import {Provider} from 'react-redux';
 import store from '../src/redux/store';
 import UserDetail from './components/User/userDetail';
 import UpdateUser from './components/User/updateUser';
-
+import UserPost from './components/Post/userPost';
+import UpdatePost from './components/Post/updatePost';
 
 class App extends Component {
   render() {
@@ -34,8 +35,11 @@ class App extends Component {
               <Route exact path="/about" component={about}/>
               <Route exact path="/login" component={login}/>
               <Route exact path="/register" component={register}/>
+              
               <Route exact path="/post/:id" component={post}/>
               <Route exact path="/create-post" component={createPost}/>
+              <Route exact path="/user-post/:id" component={UserPost}/>
+              <Route exact path="/update-post/:id" component={UpdatePost}/>
 
               <Route exact path="/change-password/:id" component={UpdateUser}/>
               <Route exact path="/user/:id" component={UserDetail}/>
