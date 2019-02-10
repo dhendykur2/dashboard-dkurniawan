@@ -44,8 +44,11 @@ class UserPost extends Component {
     }
     const decode = jwt_decode(Cookies.get('UID'));
     const postedBy = decode.user.id;
+    const auth = {
+        postedBy: postedBy
+    }
     //console.log(id);
-    Axios.delete(`http://localhost:5000/post/${id}`, postedBy)
+    Axios.delete(`http://localhost:5000/post/${id}`, auth)
     .then(response => {
         if(response) {
             console.log(response);
