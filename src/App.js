@@ -23,6 +23,14 @@ import UserPost from './components/Post/userPost';
 import UpdatePost from './components/Post/updatePost';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      currentUser: false
+    }
+  }
   render() {
     return (
       <Provider store={store}>

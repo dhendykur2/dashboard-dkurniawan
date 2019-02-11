@@ -17,6 +17,7 @@ class UpdateUser extends Component {
             newPassword: '',
             confirmPassword: '',
             error: '',
+            errorMsg: '',
             id: props.match.params.id
         }
     }
@@ -48,25 +49,35 @@ class UpdateUser extends Component {
         }  
         if(password.newPassword !== password.confirmPassword) {
             this.setState({
-                error: true
+                error: true,
+                errorMsg: 'New Password & Confirm Password must be same'
+            })
+        }
+        else {
+            this.setState({
+                error: false,
+                errorMsg: ''
             })
         }
         Axios.put(`http://localhost:5000/user/${this.state.id}`, password)
         .then((res) => {
-            if(res.data.update) {
+            if(!res.data.update) {
+                this.setState({
+                    error: true,
+                    errorMsg: 'Invalid password'
+                })
+                return false;
+            }
+            else if(res.data.update) {
+                this.setState({
+                    oldPassword: '',
+                    newPassword: '',
+                    confirmPassword: '',
+                    error: '',
+                    errorMsg: ''
+                });
                 this.props.history.push(`/user/${this.state.id}`);
             }
-            this.setState({
-                error: res.data.message
-            })
-        })
-        .then(() => {
-            this.setState({
-                oldPassword: '',
-                newPassword: '',
-                confirmPassword: '',
-                error: ''
-            });
         })
         .catch(error => {
             //console.log(error);
@@ -79,7 +90,7 @@ class UpdateUser extends Component {
                 <h2>Change Password</h2>
                 <form onSubmit={this.onSubmit} className="form-signin">
                 <div className="form-group col-md-4">
-                    { this.state.error ? (<label style={{ color: "red" }}>New Password & confirm Password must be same</label>) : '' }
+                    { this.state.error ? (<label style={{ color: "red" }}>{this.state.errorMsg}</label>) : '' }
                     </div>
                     <div className="form-group col-md-4">
                         <label>Old Password</label>

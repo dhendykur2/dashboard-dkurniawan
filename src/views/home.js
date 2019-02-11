@@ -66,9 +66,6 @@ class Home extends Component {
         {
           this.postTable()
         }
-          {/* {/*Cookies.get('UID') ? this.postTable() : null*/
-            //this.postTable()
-          } 
         </div>
       </div>
     );

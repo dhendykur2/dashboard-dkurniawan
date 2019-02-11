@@ -51,6 +51,7 @@ class Login extends Component {
         .then(res => {
             if (res.data.login) {
                 Cookies.set('UID',res.data.token);
+                //decode the token
                 this.props.history.push('/');
             }
             this.setState({
